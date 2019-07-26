@@ -1,0 +1,270 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint==phone {
+    @media only screen and (max-width: 37.5em) {
+      @content
+    }
+
+    ; //600px
+  }
+
+  @if $breakpoint==tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content
+    }
+
+    ; //900px
+  }
+
+  @if $breakpoint==tab-land {
+    @media only screen and (max-width: 75em) {
+      @content
+    }
+
+    ; //1200px
+  }
+
+  @if $breakpoint==big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content
+    }
+
+    ; //1800
+  }
+}
+
+html {
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
+}
+
+body {
+  background-color: darkslategrey;
+  position: relative;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+a:not([class]) {
+  color: #6DFBA1;
+  text-decoration: none;
+}
+
+a:not([class]):hover {
+  color: #03c24c;
+}
+
+a[class]:active {
+  color: #E64C4C;
+}
+
+header.header {
+    display: flex;
+    justify-content: space-between;
+  color: rgba(255, 255, 255, 1);
+  background: linear-gradient(rgba(0, 0, 0, .6),
+      rgba(0, 0, 0, .6)),
+    url("https://meal-planner-app.netlify.com/img/header-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 85vh;
+  padding: 1.5rem;
+
+  @include respond(tab-port) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 137vh;
+  }
+}
+
+h1.heading {
+  width: 21%;
+  font-size: 5rem;
+
+  @include respond(tab-port) {
+    text-align: center;
+    width: 102%;
+    font-size: 5rem;
+  }
+
+}
+
+figure.food--img-container {
+  position: relative;
+}
+
+main.content {
+  margin-top: 3rem;
+  padding: 3rem 3rem;
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-rows: repeat(2, 2fr);
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  position: relative;
+
+  @include respond (tab-land) {
+    margin-top: 5rem;
+  }
+
+  h3 {
+    margin-top: 8px;
+    color: rgb(178, 189, 186);
+  }
+
+  a {
+    margin-top: 8px;
+  }
+
+  h5 {
+    margin-top: 8px;
+    color: rgb(178, 189, 186);
+  }
+
+  & .category {
+    position: absolute;
+    left: 80%;
+    top: 12%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: darkslategrey;
+    // #5643fa;
+    padding: 8px;
+  }
+}
+
+img.food--img {
+  border: 1px solid rgba(167, 162, 162, .7);
+}
+
+form#create-form {
+  width: 87%;
+  background-color: rgba(38, 78, 78, 0.37);
+  border: 1px solid rgb(18, 65, 65);
+  padding: 1.5rem 2rem;
+  font-family: 'lator';
+  color: rgba(255, 255, 255, 1);
+
+  @include respond (tab-land) {
+    width: 100%;
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
+    text-align: center;
+  }
+
+  @include respond(phone) {
+    top: 40rem;
+  }
+
+  & input {
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 3.5rem;
+    border: solid thin rgb(161, 212, 212);
+    background-color: darkslategrey;
+    text-indent: 5px;
+  }
+
+  & #category {
+    display: block;
+    width: 100%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    -ms-text-overflow: '';
+    border: solid thin #fff;
+    background: none;
+    height: 3.5rem;
+
+    & option {
+      background-color: darkslategrey;
+      text-indent: 5px;
+    }
+  }
+
+  & button:hover {
+    background-color: rgb(6, 61, 51);
+    transform: translateY(-2px);
+  }
+
+  & button:active {
+    background-color: rgb(25, 139, 118);
+  }
+}
+
+form#search-form {
+  font-family: 'lator';
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+  display: flex;
+  justify-content: flex-start;
+
+  @include respond (tab-land) {
+    margin-left: 0rem;
+  }
+
+  @include respond (tab-port) {
+    justify-content: center;
+  }
+
+  & input#search {
+    height: 5rem;
+    color: black;
+    text-indent: 8px;
+  }
+
+  & input#submit {
+    color: #222;
+    height: 5rem;
+    width: 10rem;
+    margin-left: 17px;
+  }
+
+  & input#clear {
+    color: rgb(175, 0, 0);
+    height: 5rem;
+    width: 10rem;
+    margin-left: 7px;
+  }
+}
+
+@media (max-width:465px) {
+  main.content {
+    display: grid;
+    grid-gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+  }
+}
+
+@media (max-width:320px) {
+  form#search-form {
+    display: block;
+    width: 205px;
+    margin: 0 auto;
+    margin-top: 25px;
+
+    & input#submit {
+      display: inline-block;
+    }
+
+    & input#search {
+      margin-bottom: 5px;
+    }
+
+    & input#clear {
+      display: inline-block;
+    }
+  }
+}
+
